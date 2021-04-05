@@ -58,6 +58,7 @@ void list_qsort(list_t *list, int compare(const void *left, const void *right)) 
 }
 
 int list_seq_find(list_t *list, int compare(const void *item, const void *data), const void *data) {
+	if (!list) return -1;
 	for (int i = 0; i < list->length; i++) {
 		void *item = list->items[i];
 		if (compare(item, data) == 0) {
@@ -68,6 +69,7 @@ int list_seq_find(list_t *list, int compare(const void *item, const void *data),
 }
 
 int list_find(list_t *list, const void *item) {
+	if (!list) return -1;
 	for (int i = 0; i < list->length; i++) {
 		if (list->items[i] == item) {
 			return i;
