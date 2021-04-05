@@ -287,8 +287,10 @@ static struct cmd_results *resize_set_tiled(struct sway_container *con,
 			}
 			if (parent) {
 				width->amount = parent->pending.width * width->amount / 100;
-			} else {
+			} else if (con->pending.workspace) {
 				width->amount = con->pending.workspace->width * width->amount / 100;
+			} else {
+				width->amount = 800 * width->amount / 100;
 			}
 			width->unit = MOVEMENT_UNIT_PX;
 		}
@@ -308,8 +310,10 @@ static struct cmd_results *resize_set_tiled(struct sway_container *con,
 			}
 			if (parent) {
 				height->amount = parent->pending.height * height->amount / 100;
-			} else {
+			} else if (con->pending.workspace) {
 				height->amount = con->pending.workspace->height * height->amount / 100;
+			} else {
+				height->amount = 800 * height->amount / 100;
 			}
 			height->unit = MOVEMENT_UNIT_PX;
 		}
